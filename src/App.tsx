@@ -1,10 +1,9 @@
-// src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Home from './Components/Home/NavBarHome';
-import Login from './Components/Login/Login';
-import Register from './Components/Login/Register';
+
+import Home from './Pages/Home';
+import Login from './Pages/Auth/Login';
+import Register from './Pages/Auth/Register';
 import ProtectedPage from './Components/ProtectedPage';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Contexts/AuthContext';
@@ -13,7 +12,7 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
-        <div className="App">
+        <div className="App h-100">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

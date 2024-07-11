@@ -1,0 +1,9 @@
+.nav-link:hover {
+    color: rgb(255, 249, 202) !important;
+}
+
+@media (max-width: 768px) {
+    .custom-toggler .navbar-toggler-icon {
+        font-size: 0.8rem;
+    }
+}
