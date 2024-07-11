@@ -2,6 +2,18 @@
     color: rgb(255, 249, 202) !important;
 }
 
+#titleForm{
+    color: var(--bs-green);
+}
+
+#btnLogin, #btnRegister{
+    background-color: var(--bs-green);
+}
+
+#btnLogin:hover, #btnRegister:hover{
+    color: rgb(255, 249, 202);
+}
+
 @media (max-width: 768px) {
     .custom-toggler .navbar-toggler-icon {
         font-size: 0.8rem;

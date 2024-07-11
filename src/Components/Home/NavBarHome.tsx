@@ -6,7 +6,7 @@ function NavbarHome() {
   return (
     <Navbar className="bg-nav" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" className='d-flex gap-1'>
           <img
             src={`${process.env.PUBLIC_URL}/img/logo.png`}
             width="50"
@@ -14,6 +14,7 @@ function NavbarHome() {
             className="d-inline-block align-top"
             alt="Logo"
           />
+          <h3 className='m-auto'>Divine Desk</h3>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-toggler" />
         <Navbar.Collapse id="basic-navbar-nav">

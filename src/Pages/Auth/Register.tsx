@@ -5,7 +5,7 @@ function Register() {
   return (
     <>
       <NavbarHome/>
-      <div>
+      <div className="h-100">
         <RegisterForm />
       </div>
     </>

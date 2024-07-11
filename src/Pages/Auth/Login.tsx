@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   return (
     <>
       <NavbarHome />
-      <div>
+      <div className='h-100'>
         <LoginForm onSuccess={handleLoginSuccess} />
       </div>
     </>
