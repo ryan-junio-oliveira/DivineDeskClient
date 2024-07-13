@@ -1,12 +1,15 @@
 import React from 'react';
+import Sidebar from '../../Components/Dashboard/SideBar';
+import { Container } from 'react-bootstrap';
 
-const ProtectedPage: React.FC = () => {
+const Dashboard = () => {
   return (
-    <div>
-      <h2>Página Protegida</h2>
-      <p>Este conteúdo só deve ser acessado por usuários autenticados.</p>
+    <div className="d-flex">
+      <Sidebar />
+      <Container className="flex-grow-1">
+      </Container>
     </div>
   );
 };
 
-export default ProtectedPage;
+export default Dashboard;
