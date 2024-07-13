@@ -39,6 +39,9 @@ const Sidebar: React.FC = () => {
             <NavLink to="/dashboard" title='Página inicial' className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to="/admin" title='Área administrativa' className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+              <CDBSidebarMenuItem icon="lock">Adiministrador</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink to="/members" title='Membros' className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
               <CDBSidebarMenuItem icon="user">Membros</CDBSidebarMenuItem>
             </NavLink>
@@ -85,6 +88,7 @@ const Sidebar: React.FC = () => {
 
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/members" element={<Members />} />
         <Route path="/treasury" element={<Treasury />} />
         <Route path="/storage" element={<Storage />} />
@@ -96,6 +100,7 @@ const Sidebar: React.FC = () => {
 
 //Conteudo do container vai ser referenciado aqui
 const Dashboard: React.FC = () => <div></div>;
+const Admin: React.FC = () => <div></div>;
 const Members: React.FC = () => <div></div>;
 const Treasury: React.FC = () => <div></div>;
 const Storage: React.FC = () => <div></div>;
