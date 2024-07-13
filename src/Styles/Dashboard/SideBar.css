@@ -1,0 +1,8 @@
+.jGeaPm .head-div {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.activeClicked{
+    color: var(--bs-success) !important;
+}
