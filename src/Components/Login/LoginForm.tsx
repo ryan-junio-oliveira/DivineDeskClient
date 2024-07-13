@@ -3,7 +3,7 @@ import useAuth from '../../Hooks/UseAuth';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 
 interface LoginFormProps {
-  onSuccess?: () => void; // Callback para sucesso no login
+  onSuccess?: () => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
@@ -33,7 +33,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
     setErrors({});
     try {
       await login(email, password);
-      if (onSuccess) onSuccess(); // Chamada da função de sucesso, se fornecida
+      if (onSuccess) onSuccess();
     } catch (error) {
       console.error('Login failed', error);
       setErrors({ general: 'Falha no login. Por favor, tente novamente.' });
@@ -48,7 +48,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
         <h2 className='text-center' id='titleForm'>Login</h2>
         {errors.general && <Alert variant="danger">{errors.general}</Alert>}
         <Form.Group className='w-100 m-auto' controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             value={email}
@@ -62,7 +62,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
         </Form.Group>
 
         <Form.Group className='w-100 m-auto' controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Senha</Form.Label>
           <Form.Control
             type="password"
             value={password}

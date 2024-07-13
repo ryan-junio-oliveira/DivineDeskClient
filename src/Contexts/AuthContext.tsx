@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import axios from '../Api/axios'; // Importar a configuração global do Axios
+import axios from '../Api/axios';
 
 interface User {
   id: number;

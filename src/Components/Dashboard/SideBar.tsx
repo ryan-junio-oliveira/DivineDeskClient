@@ -36,20 +36,26 @@ const Sidebar: React.FC = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+            <NavLink to="/dashboard" title='Página inicial' className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="/members" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
-              <CDBSidebarMenuItem icon="user">Members</CDBSidebarMenuItem>
+            <NavLink to="/members" title='Membros' className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+              <CDBSidebarMenuItem icon="user">Membros</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="/treasury" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
-              <CDBSidebarMenuItem icon="table">Treasury</CDBSidebarMenuItem>
+            <NavLink to="/treasury" title='Tesouraria' className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+              <CDBSidebarMenuItem icon="table">Tesouraria</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="/analytics" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
-              <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
+            <NavLink to="/storage" title='Almoxarifado' className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+              <CDBSidebarMenuItem icon="archive">Almoxarifado</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="/hero404" target="_blank" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
-              <CDBSidebarMenuItem icon="exclamation-circle">404 page</CDBSidebarMenuItem>
+            <NavLink to="/events" title='Eventos' target="_blank" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+              <CDBSidebarMenuItem icon="exclamation-circle">Eventos</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink to="/bible-school" title='Escola biblica Dominical' target="_blank" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+              <CDBSidebarMenuItem icon="graduation-cap">EBD</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink to="/musics" title='Músicas e Hinos' target="_blank" className={({ isActive }) => (isActive ? 'activeClicked' : '')}>
+              <CDBSidebarMenuItem icon="music">Músicas e Hinos</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
@@ -67,8 +73,8 @@ const Sidebar: React.FC = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#">My Profile</Dropdown.Item>
-              <Dropdown.Item href="#">Settings</Dropdown.Item>
+              <Dropdown.Item href="#">Meu Perfil</Dropdown.Item>
+              <Dropdown.Item href="#">Configurações</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item href="#">Logout</Dropdown.Item>
             </Dropdown.Menu>
@@ -81,7 +87,7 @@ const Sidebar: React.FC = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/members" element={<Members />} />
         <Route path="/treasury" element={<Treasury />} />
-        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/storage" element={<Storage />} />
         <Route path="/hero404" element={<Hero404 />} />
       </Routes>
     </div>
@@ -92,7 +98,7 @@ const Sidebar: React.FC = () => {
 const Dashboard: React.FC = () => <div></div>;
 const Members: React.FC = () => <div></div>;
 const Treasury: React.FC = () => <div></div>;
-const Analytics: React.FC = () => <div></div>;
+const Storage: React.FC = () => <div></div>;
 const Hero404: React.FC = () => <div></div>;
 
 export default Sidebar;

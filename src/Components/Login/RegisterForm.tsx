@@ -49,10 +49,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
   return (
     <Container fluid className="d-flex h-100">
       <Form onSubmit={handleSubmit} className="p-4 rounded shadow-lg bg-white mt-4 m-auto col-12 col-sm-5 gap-3 d-flex flex-column">
-        <h2 className='text-center' id='titleForm'>Register</h2>
+        <h2 className='text-center' id='titleForm'>Cadastro</h2>
         {errors.general && <Alert variant="danger">{errors.general}</Alert>}
         <Form.Group className='w-100 m-auto' controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Nome</Form.Label>
           <Form.Control
             type="text"
             value={name}
@@ -66,7 +66,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
         </Form.Group>
 
         <Form.Group className='w-100 m-auto' controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             value={email}
@@ -80,7 +80,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
         </Form.Group>
 
         <Form.Group className='w-100 m-auto' controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Senha</Form.Label>
           <Form.Control
             type="password"
             value={password}
@@ -94,7 +94,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
         </Form.Group>
 
         <Button id="btnRegister" className='w-25 m-auto' variant="primary" type="submit" disabled={loading}>
-          {loading ? 'Loading...' : 'Register'}
+          {loading ? 'Loading...' : 'Cadastrar'}
         </Button>
       </Form>
     </Container>
