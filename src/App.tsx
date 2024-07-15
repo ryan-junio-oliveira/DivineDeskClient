@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Login from './Pages/Auth/Login';
-import Register from './Pages/Auth/Register';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Contexts/AuthContext';
+import ContactInterest from './Pages/Mail/ContactInterest';
 
 const App: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/contact-interest" element={<ContactInterest />} />
             <Route path="/dashboard" element={<Dashboard />} />
             {/* <Route
               path="/dashboard"

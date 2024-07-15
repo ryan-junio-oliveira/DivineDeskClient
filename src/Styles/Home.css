@@ -6,7 +6,7 @@
     color: var(--bs-green);
 }
 
-#btnLogin, #btnRegister{
+#btnLogin, #btnRegister, #btnSend{
     background-color: var(--bs-green);
 }
 
