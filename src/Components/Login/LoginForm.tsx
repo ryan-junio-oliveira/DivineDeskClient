@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import useAuth from '../../Hooks/UseAuth';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
+import axios from 'axios';
 
 interface LoginFormProps {
   onSuccess?: () => void;
+  onFailure?: () => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onFailure }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,8 +37,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
       await login(email, password);
       if (onSuccess) onSuccess();
     } catch (error) {
-      console.error('Login failed', error);
-      setErrors({ general: 'Falha no login. Por favor, tente novamente.' });
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 401) {
+          setErrors({ general: 'Email ou senha inválidos.' });
+        } else {
+          setErrors({ general: 'Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.' });
+        }
+      } else {
+        setErrors({ general: 'Ocorreu um erro desconhecido. Por favor, tente novamente mais tarde.' });
+      }
+      // if (onFailure) onFailure();
     } finally {
       setLoading(false);
     }

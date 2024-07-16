@@ -1,8 +1,8 @@
-import React from 'react';
 import Sidebar from '../../Components/Dashboard/SideBar';
 import { Container } from 'react-bootstrap';
 
 const Dashboard = () => {
+
   return (
     <div className="d-flex">
       <Sidebar />

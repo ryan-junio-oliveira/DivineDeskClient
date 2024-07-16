@@ -7,14 +7,18 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLoginSuccess = () => {
-    navigate('/protected');
+    navigate('/dashboard');
+  };
+
+  const handleLoginFailure = () => {
+    alert('Falha ao tentar realizar login. Verifique suas credenciais.');
   };
 
   return (
     <>
       <NavbarHome />
       <div className='h-100'>
-        <LoginForm onSuccess={handleLoginSuccess} />
+        <LoginForm onSuccess={handleLoginSuccess} onFailure={handleLoginFailure} />
       </div>
     </>
   );

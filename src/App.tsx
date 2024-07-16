@@ -10,22 +10,22 @@ import ContactInterest from './Pages/Mail/ContactInterest';
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <div className="App h-100">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/contact-interest" element={<ContactInterest />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* <Route
+            <Route
               path="/dashboard"
               element={<ProtectedRoute element={<Dashboard />} />}
-            /> */}
+            />
           </Routes>
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -9,8 +9,11 @@ import {
 } from 'cdbreact';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
+import AuthContext from '../../Contexts/AuthContext';
 
 const Sidebar: React.FC = () => {
+  const authContext = useContext(AuthContext);
+
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
       <CDBSidebar
@@ -73,13 +76,14 @@ const Sidebar: React.FC = () => {
                 height="30"
                 className="rounded-circle me-2"
               />
+              {authContext?.user ? authContext.user.name : 'User'}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
               <Dropdown.Item href="#">Meu Perfil</Dropdown.Item>
               <Dropdown.Item href="#">Configurações</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item href="#">Logout</Dropdown.Item>
+              <Dropdown.Item onClick={authContext?.logout}>Logout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </CDBSidebarFooter>

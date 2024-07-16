@@ -20,8 +20,7 @@ function NavbarHome() {
           <Nav className="ms-auto">
             <Nav.Link href="/" className="text-white">Home</Nav.Link>
             <Nav.Link href="/login" className="text-white">Login</Nav.Link>
-            <Nav.Link href="/contact-interest" className="text-white">Cadastro</Nav.Link>
-            <Nav.Link href="/dashboard" className="text-white">Dashboard</Nav.Link>
+            <Nav.Link href="/contact-interest" className="text-white">Contato</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
