@@ -1,0 +1,21 @@
+.nav-link:hover {
+    color: rgb(255, 249, 202) !important;
+}
+
+#titleForm{
+    color: var(--bs-green);
+}
+
+#btnLogin, #btnRegister, #btnSend{
+    background-color: var(--bs-green);
+
+    :hover{
+        color: rgb(255, 249, 202);
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-toggler .navbar-toggler-icon {
+        font-size: 0.8rem;
+    }
+}
