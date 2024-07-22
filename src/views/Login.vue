@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="js">
 import NavBarHome from '../components/home/NavBarHome.vue';
 import FormLogin from '../components/auth/FormLogin.vue';
 </script>

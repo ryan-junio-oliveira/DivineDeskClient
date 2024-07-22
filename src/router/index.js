@@ -7,7 +7,8 @@ import Dashboard from '../views/Dashboard.vue';
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true, roles: ['user', 'admin'] } },
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true} },
+  // { path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true, roles: ['user', 'admin'] } },
   // { path: '/admin', name: 'Admin', component: Admin, meta: { requiresAuth: true, roles: ['admin'] } },
 ];
 
@@ -26,7 +27,6 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.roles) && !to.meta.roles.includes(userRole)) {
       next('/dashboard');
     } else {
-      alert('parei aqui');
       next();
     }
   } else {

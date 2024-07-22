@@ -27,7 +27,7 @@
     </nav>
 </template>
 
-<script setup lang="ts">
+<script setup lang="js">
 import { computed } from 'vue';
 
 const logoSrc = computed(() => import.meta.env.BASE_URL + 'src/assets/img/logo.png');

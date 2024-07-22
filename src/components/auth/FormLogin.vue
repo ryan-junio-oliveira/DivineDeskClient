@@ -19,7 +19,7 @@
         <b-form-invalid-feedback id="password-feedback">{{ errors.password }}</b-form-invalid-feedback>
       </b-form-group>
 
-      <b-button id="btnLogin" class="w-25 m-auto" variant="primary" type="submit" :disabled="loading">
+      <b-button id="btnLogin" class="m-auto" variant="primary" type="submit" :disabled="loading">
         {{ loading ? 'Loading...' : 'Login' }}
       </b-button>
     </b-form>
