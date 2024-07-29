@@ -1,44 +1,40 @@
 <template>
-  <b-container fluid class="d-flex h-100">
-    <b-form @submit.prevent="handleSubmit"
-      class="p-4 rounded shadow-lg bg-white mt-4 m-auto form-container d-flex flex-column">
+  <div class="container-fluid d-flex h-100">
+    <form @submit.prevent="handleSubmit" class="p-4 rounded shadow-lg bg-white mt-4 m-auto form-container d-flex flex-column gap-3">
       <h2 class="text-center" id="titleForm">Login</h2>
-      <b-alert v-if="errors.general" variant="danger">{{ errors.general }}</b-alert>
-      <b-alert v-if="errors.email" variant="danger">{{ errors.email }}</b-alert>
-      <b-alert v-if="errors.password" variant="danger">{{ errors.password }}</b-alert>
 
-      <b-form-group class="w-100 m-auto" label="Email" label-for="email">
-        <b-form-input id="email" type="email" v-model="email" placeholder="Enter email"
-          :state="!!errors.email ? false : null" />
-        <b-form-invalid-feedback id="email-feedback">{{ errors.email }}</b-form-invalid-feedback>
-      </b-form-group>
+      <Alert :message="errors.general" variant="danger" />
+      <Alert :message="errors.email" variant="danger" />
+      <Alert :message="errors.password" variant="danger" />
 
-      <b-form-group class="w-100 m-auto" label="Senha" label-for="password">
-        <b-form-input id="password" type="password" v-model="password" placeholder="Password"
-          :state="!!errors.password ? false : null" />
-        <b-form-invalid-feedback id="password-feedback">{{ errors.password }}</b-form-invalid-feedback>
-      </b-form-group>
+      <div class="form-group w-100 m-auto">
+        <label for="email">Email</label>
+        <input id="email" type="email" v-model="email" class="form-control" placeholder="Digite seu email"
+          :class="{ 'is-invalid': !!errors.email }" />
+        <div class="invalid-feedback" id="email-feedback">{{ errors.email }}</div>
+      </div>
 
-      <b-button id="btnLogin" class="m-auto" variant="primary" type="submit" :disabled="loading">
+      <div class="form-group w-100 m-auto">
+        <label for="password">Senha</label>
+        <input id="password" type="password" v-model="password" class="form-control" placeholder="Senha"
+          :class="{ 'is-invalid': !!errors.password }" />
+        <div class="invalid-feedback" id="password-feedback">{{ errors.password }}</div>
+      </div>
+
+      <button id="btnLogin" class="btn btn-primary m-auto" type="submit" :disabled="loading">
         {{ loading ? 'Loading...' : 'Login' }}
-      </b-button>
-    </b-form>
-  </b-container>
+      </button>
+    </form>
+  </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { BContainer, BForm, BFormGroup, BFormInput, BButton, BFormInvalidFeedback, BAlert } from 'bootstrap-vue-3';
+import Alert from '../../components/ui/Alert.vue';
 
 export default {
   components: {
-    BContainer,
-    BForm,
-    BFormGroup,
-    BFormInput,
-    BButton,
-    BFormInvalidFeedback,
-    BAlert
+    Alert
   },
   data() {
     return {
@@ -50,11 +46,7 @@ export default {
   computed: {
     ...mapGetters(['error']),
     errors() {
-      return {
-        general: this.error.general || '',
-        email: this.error.email || '',
-        password: this.error.password || ''
-      };
+      return this.error || { general: '', email: '', password: '' };
     }
   },
   methods: {

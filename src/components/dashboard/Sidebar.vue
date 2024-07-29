@@ -1,5 +1,5 @@
 <template>
-  <div :class="['sidebar bg-nav', { 'sidebar-collapsed': isCollapsed }]">
+  <div :class="['sidebar bg-nav', { 'sidebar-collapsed': isCollapsed }]" style="z-index: 1000;">
     <button class="btn btn-toggle" @click="toggleSidebar">
       <font-awesome-icon :icon="isCollapsed ? 'bars' : 'times'" />
     </button>
@@ -34,9 +34,9 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/customers" class="nav-link" active-class="active">
+          <router-link to="/members" class="nav-link" active-class="active">
             <font-awesome-icon icon="users" class="icon" />
-            <span v-if="!isCollapsed">Customers</span>
+            <span v-if="!isCollapsed">Membros</span>
           </router-link>
         </li>
       </ul>
@@ -44,10 +44,9 @@
       <div class="dropdown">
         <a href="#" class="dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-          <strong v-if="!isCollapsed">mdo</strong>
+          <strong v-if="!isCollapsed">{{ user.user.name }}</strong>
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownUser">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li>
@@ -65,6 +64,7 @@ import { computed } from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { mapGetters } from 'vuex';
 
 const logoSrc = computed(() => import.meta.env.BASE_URL + 'src/assets/img/logo.png');
 
@@ -74,6 +74,9 @@ export default {
   name: 'Sidebar',
   components: {
     FontAwesomeIcon,
+  },
+  computed: {
+    ...mapGetters(['user'])
   },
   data() {
     return {
