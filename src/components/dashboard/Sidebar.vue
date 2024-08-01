@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-      isCollapsed: window.innerWidth <= 768, // Colapsada por padrão em telas menores
+      isCollapsed: window.innerWidth <= 768,
     };
   },
   methods: {

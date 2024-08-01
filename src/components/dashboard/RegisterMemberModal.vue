@@ -52,14 +52,8 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log('Form Data:', this.form);
-      // Aqui você pode adicionar a lógica para salvar os dados do formulário
       this.$bvModal.hide('register-member-modal');
     }
   }
 };
 </script>
-
-<style scoped>
-/* Adicione estilos customizados, se necessário */
-</style>

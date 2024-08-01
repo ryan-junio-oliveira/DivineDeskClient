@@ -1,4 +1,3 @@
-<!-- src/components/Alert.vue -->
 <template>
     <div v-if="message" :class="['alert', `alert-${variant}`]">
       {{ message }}

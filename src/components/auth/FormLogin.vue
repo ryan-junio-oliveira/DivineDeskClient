@@ -55,9 +55,8 @@ export default {
       this.loading = true;
       try {
         await this.login({ email: this.email, password: this.password });
-        this.$router.push('/dashboard'); // Redireciona para a rota protegida
+        this.$router.push('/dashboard');
       } catch (error) {
-        // Mensagens de erro já definidas pela Vuex mutation
       } finally {
         this.loading = false;
       }
