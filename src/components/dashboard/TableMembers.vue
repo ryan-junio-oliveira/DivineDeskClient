@@ -45,7 +45,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEdit, faTrash, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import axios from '../../apis/axios';
 import memberService from '../../services/memberService';
 import EditMemberModal from './EditMemberModal.vue';
 import DeleteMemberModal from './DeleteMemberModal.vue';
@@ -57,42 +56,60 @@ export default {
     components: {
         FontAwesomeIcon, EditMemberModal, DeleteMemberModal
     },
+    props: {
+        refresh: {
+            type: Boolean,
+            required: true
+        }
+    },
     data() {
         return {
-            items: [],
+            items: {
+                data: []
+            },
             currentItem: null,
             showEditModal: false,
-            showDeleteModal: false
+            showDeleteModal: false,
+            showRegisterModal: false,
+            showMemberModal: false
         };
     },
     async created() {
-        this.items = await memberService.allMembers();
+        await this.getMembers();
     },
     methods: {
-        async openEditModal(item) {
-            this.currentItem = await this.showMemberEdit(item.id);
-            this.showEditModal = true;
-
-        },
-        async showMemberEdit(id) {
+        async getMembers() {
             try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`/members/show/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                return response.data;
+                this.items = await memberService.allMembers();
             } catch (error) {
             }
+        },
+        async openEditModal(item) {
+            const data = await memberService.showMember(item.id);
+            this.currentItem = { ...data };
+            this.showEditModal = true;
         },
         openDeleteModal(item) {
             this.currentItem = { ...item };
             this.showDeleteModal = true;
         },
-        openDetailsModal(item) {
-            // Implement the logic for the details modal if needed
+        openRegisterModal() {
+            this.showRegisterModal = true;
+        },
+        async openDetailsModal(item) {
+            const data = await memberService.showMember(item.id);
+            this.currentItem = { ...data };
+            this.showMemberModal = true;
+        }
+    },
+    watch: {
+    refresh: {
+        immediate: true,
+        handler() {
+            this.getMembers();
         }
     }
+}
+
 };
 </script>

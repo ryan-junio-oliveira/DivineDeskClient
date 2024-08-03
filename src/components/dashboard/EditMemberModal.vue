@@ -46,6 +46,7 @@
 
 <script>
 import axios from '../../apis/axios';
+import memberService from '../../services/memberService';
 
 export default {
     props: {
@@ -80,16 +81,10 @@ export default {
         },
         async submitForm() {
             try {
-                const token = localStorage.getItem('token');
-                await axios.put(`/members/update`, this.form, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                const response = await memberService.editMember(this.form);
                 this.$emit('member-updated');
                 this.closeEditModal();
             } catch (error) {
-                //todo: alert error
             }
         }
     }

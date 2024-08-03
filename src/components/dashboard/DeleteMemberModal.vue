@@ -22,6 +22,7 @@
 
 <script>
 import axios from '../../apis/axios';
+import memberService from '../../services/memberService';
 
 export default {
     props: {
@@ -34,12 +35,7 @@ export default {
         },
         async confirmDelete() {
             try {
-                const token = localStorage.getItem('token');
-                await axios.delete(`/members/destroy/${this.item.id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                const response = await memberService.deleteMember(this.item.id);
                 this.$emit('member-deleted');
                 this.closeDeleteModal();
             } catch (error) {

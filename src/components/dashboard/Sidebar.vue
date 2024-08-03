@@ -21,7 +21,7 @@
             <span v-if="!isCollapsed">Dashboard</span>
           </router-link>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link to="/orders" class="nav-link" active-class="active">
             <font-awesome-icon icon="shopping-cart" class="icon" />
             <span v-if="!isCollapsed">Orders</span>
@@ -32,7 +32,7 @@
             <font-awesome-icon icon="box" class="icon" />
             <span v-if="!isCollapsed">Products</span>
           </router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link to="/members" class="nav-link" active-class="active">
             <font-awesome-icon icon="users" class="icon" />

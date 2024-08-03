@@ -3,8 +3,8 @@
         <div class="app-container">
             <Sidebar :is-collapsed="isCollapsed" />
             <div :class="['content', { 'content-collapsed': isCollapsed }]">
-                <NavBarMembers />
-                <TableMembers />
+                <NavBarMembers @member-registered="updateTableMembers" />
+                <TableMembers :refresh="refreshTrigger" />
             </div>
         </div>
     </div>
@@ -33,6 +33,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
     window.removeEventListener('resize', handleResize);
 });
+
+const refreshTrigger = ref(false);
+
+const updateTableMembers = () => {
+    refreshTrigger.value = !refreshTrigger.value;
+};
 </script>
 
 <style scoped>

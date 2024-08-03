@@ -1,17 +1,27 @@
 import axios from '../apis/axios.js';
 
 /**
- * Helper function to handle GET requests with authorization.
- * @param {string} url - The URL to send the GET request to.
+ * Helper function to handle HTTP requests with authorization.
+ * @param {string} url - The URL to send the request to.
+ * @param {string} method - The HTTP method (GET, POST, PUT, DELETE, etc.).
+ * @param {Object} [data=null] - The data to send in the request body (if applicable).
  * @returns {Promise<Object>} - The response data from the request.
  */
-const handleRequest = async (url) => {
+const handleRequest = async (url, method = 'get', data = null) => {
   const token = localStorage.getItem('token');
-  const response = await axios.get(url, {
+  const config = {
+    method,
+    url,
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  });
+  };
+
+  if (data) {
+    config.data = data;
+  }
+
+  const response = await axios(config);
   return response.data;
 };
 
@@ -24,12 +34,7 @@ export default {
    */
   async deleteMember(id) {
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`/members/destroy/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      return await handleRequest(`/members/destroy/${id}`, 'delete');
     } catch (error) {
       console.log(error);
       // TODO: alert error
@@ -43,14 +48,9 @@ export default {
    * @returns {Promise<void>}
    * @throws Will throw an error if the request fails.
    */
-  async editMember(id, memberData) {
+  async editMember(memberData) {
     try {
-      const token = localStorage.getItem('token');
-      await axios.put(`/members/update/${id}`, memberData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await handleRequest(`/members/update`, 'put', memberData);
     } catch (error) {
       console.log(error);
       // TODO: alert error
@@ -65,7 +65,7 @@ export default {
    */
   async showMember(id) {
     try {
-      return await handleRequest(`/members/show/${id}`);
+      return await handleRequest(`/members/show/${id}`, 'get');
     } catch (error) {
       console.log(error);
       // TODO: alert error
@@ -79,10 +79,25 @@ export default {
    */
   async allMembers() {
     try {
-      return await handleRequest('/members/all');
+      return await handleRequest('/members/all', 'get');
     } catch (error) {
       console.log(error);
       // TODO: alert error
     }
   },
+
+  
+  /**
+   * Description placeholder
+   * @async
+   * @param {*} memberData
+   * @returns {unknown}
+   */
+  async addMember(memberData) {
+    try {
+      return await handleRequest('/members/store', 'post', memberData);
+    } catch (error) {
+      // TODO: handle error
+    }
+  }
 };
