@@ -34,9 +34,11 @@
             @member-updated="getMembers" />
         <DeleteMemberModal :showDeleteModal="showDeleteModal" :item="currentItem"
             @close-delete-modal="showDeleteModal = false" @member-deleted="getMembers" />
+        <ShowMemberModal :showMemberModal="showMemberModal" :item="currentItem"
+            @close-show-member-modal="showMemberModal = false" />
 
         <!-- Backdrop -->
-        <div v-if="showEditModal || showDeleteModal" class="modal-backdrop fade show" style="display: block;"></div>
+        <div v-if="showEditModal || showDeleteModal || showMemberModal" class="modal-backdrop fade show" style="display: block;"></div>
     </div>
 </template>
 
@@ -48,13 +50,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import memberService from '../../services/memberService';
 import EditMemberModal from './EditMemberModal.vue';
 import DeleteMemberModal from './DeleteMemberModal.vue';
+import ShowMemberModal from './ShowMemberModal.vue';
 
 library.add(faEdit, faTrash, faCircleInfo);
 
 export default {
     name: 'TableComponent',
     components: {
-        FontAwesomeIcon, EditMemberModal, DeleteMemberModal
+        FontAwesomeIcon, EditMemberModal, DeleteMemberModal, ShowMemberModal
     },
     props: {
         refresh: {
@@ -99,6 +102,7 @@ export default {
         async openDetailsModal(item) {
             const data = await memberService.showMember(item.id);
             this.currentItem = { ...data };
+            console.log(this.currentItem);
             this.showMemberModal = true;
         }
     },
