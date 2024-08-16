@@ -3,6 +3,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Sobrenome</th>
                     <th>Ações</th>
@@ -10,9 +11,10 @@
             </thead>
             <tbody>
                 <tr v-if="Array.isArray(items.data) && items.data.length === 0">
-                    <td class="text-center" colspan="3">Nenhum membro cadastrado</td>
+                    <td class="text-center" colspan="4">Nenhum membro cadastrado</td>
                 </tr>
                 <tr v-else v-for="item in items.data" :key="item.id">
+                    <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.last_name }}</td>
                     <td>
@@ -47,7 +49,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEdit, faTrash, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import memberService from '../../services/memberService';
+import memberService from '../../../services/memberService';
 import EditMemberModal from './EditMemberModal.vue';
 import DeleteMemberModal from './DeleteMemberModal.vue';
 import ShowMemberModal from './ShowMemberModal.vue';
@@ -102,7 +104,6 @@ export default {
         async openDetailsModal(item) {
             const data = await memberService.showMember(item.id);
             this.currentItem = { ...data };
-            console.log(this.currentItem);
             this.showMemberModal = true;
         }
     },

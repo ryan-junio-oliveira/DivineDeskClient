@@ -49,7 +49,7 @@ export default createStore({
               Authorization: `Bearer ${token}`
             }
           });
-          const user = res.data;
+          const user = res.data.user;
 
           localStorage.setItem('token', token);
           localStorage.setItem('user', JSON.stringify(user));

@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import axios from '../../apis/axios';
-import memberService from '../../services/memberService';
+import axios from '../../../apis/axios';
+import memberService from '../../../services/memberService';
 
 export default {
     props: {

@@ -5,11 +5,11 @@
     </button>
     <div class="sidebar-content mt-4 d-flex flex-column">
       <a class="navbar-brand d-flex gap-1" href="/">
-        <h4 id="logoTitle" class="mt-4">Divine Desk</h4>
+        <!-- <h4 id="logoTitle" class="mt-4">Divine Desk</h4> -->
       </a>
       <hr />
       <ul class="nav flex-column">
-        <li class="nav-item">
+        <li class="nav-item"> 
           <router-link to="/" class="nav-link" active-class="active">
             <font-awesome-icon icon="home" class="icon" />
             <span v-if="!isCollapsed">Home</span>
@@ -19,6 +19,12 @@
           <router-link to="/dashboard" class="nav-link" active-class="active">
             <font-awesome-icon icon="tachometer-alt" class="icon" />
             <span v-if="!isCollapsed">Dashboard</span>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/tithes" class="nav-link" active-class="active">
+            <font-awesome-icon icon="donate" class="icon" />
+            <span v-if="!isCollapsed">Dízimos</span>
           </router-link>
         </li>
         <!-- <li class="nav-item">
@@ -44,7 +50,7 @@
       <div class="dropdown">
         <a href="#" class="dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-          <strong v-if="!isCollapsed">{{ user.user.name }}</strong>
+          <strong v-if="!isCollapsed">{{ user.name }}</strong>
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownUser">
           <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -60,15 +66,12 @@
 </template>
 
 <script>
-import { computed } from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers, faDonate } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { mapGetters } from 'vuex';
 
-const logoSrc = computed(() => import.meta.env.BASE_URL + 'src/assets/img/logo.png');
-
-library.add(faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers);
+library.add(faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers, faDonate);
 
 export default {
   name: 'Sidebar',
@@ -89,12 +92,22 @@ export default {
     },
     handleResize() {
       if (window.innerWidth <= 768) {
+        this.addMarginTop();
         this.isCollapsed = true;
       }
     },
+    removeMarginTop(isCollapsed){
+      if(isCollapsed === false){
+        document.querySelector(".sidebar-content").classList.remove('mt-4');
+      }
+    },
+    addMarginTop(){
+      document.querySelector(".sidebar-content").classList.add('mt-4');
+    }
   },
   mounted() {
     window.addEventListener('resize', this.handleResize);
+    window.addEventListener('DOMContentLoaded', this.removeMarginTop(this.isCollapsed));
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize);
@@ -105,7 +118,7 @@ export default {
 <style scoped>
 .sidebar {
   height: 100vh;
-  width: 200px;
+  width: 250px;
   max-width: 100%;
   padding: 1rem;
   transition: width 0.3s;
@@ -125,7 +138,8 @@ export default {
   color: var(--bs-light);
 }
 
-.sidebar-collapsed .sidebar-content .dropdown-toggle, .sidebar-collapsed .sidebar-content #logoTitle {
+.sidebar-collapsed .sidebar-content .dropdown-toggle,
+.sidebar-collapsed .sidebar-content #logoTitle {
   display: none;
 }
 
@@ -147,14 +161,14 @@ export default {
   color: var(--bs-light);
 }
 
-.nav-link .icon {
-  margin-right: 0.5rem;
+.nav-link span {
+  margin-left: 0.5rem;
 }
 
 .btn-toggle {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0.5rem;
+  right: 1rem;
   background: none;
   color: var(--bs-light);
   border: none;

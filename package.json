@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
-    "build": "vite build"
+    "build": "vite build",
+    "watch:build": "nodemon --watch src --ext js,ts,vue,css --exec npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "nodemon": "^3.1.4",
     "sass": "^1.77.8",
     "vite": "^5.3.4"
   }
