@@ -27,6 +27,12 @@
             <span v-if="!isCollapsed">Dízimos</span>
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/offers" class="nav-link" active-class="active">
+            <font-awesome-icon icon="tags" class="icon" />
+            <span v-if="!isCollapsed">Ofertas</span>
+          </router-link>
+        </li>
         <!-- <li class="nav-item">
           <router-link to="/orders" class="nav-link" active-class="active">
             <font-awesome-icon icon="shopping-cart" class="icon" />
@@ -67,11 +73,11 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers, faDonate } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers, faDonate, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { mapGetters } from 'vuex';
 
-library.add(faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers, faDonate);
+library.add(faBars, faTimes, faHome, faTachometerAlt, faShoppingCart, faBox, faUsers, faDonate, faTags);
 
 export default {
   name: 'Sidebar',
