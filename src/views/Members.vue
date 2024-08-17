@@ -18,10 +18,6 @@ import NavBarMembers from '../components/dashboard/members/NavBarMembers.vue';
 
 const isCollapsed = ref(window.innerWidth <= 768);
 
-const toggleSidebar = () => {
-    isCollapsed.value = !isCollapsed.value;
-};
-
 const handleResize = () => {
     isCollapsed.value = window.innerWidth <= 768;
 };
