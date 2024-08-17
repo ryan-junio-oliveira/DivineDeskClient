@@ -23,14 +23,12 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </nav>
-</template>
+        </div> 
+    </nav> 
+</template> 
 
 <script setup lang="js">
-import { computed } from 'vue';
-
-const logoSrc = computed(() => import.meta.env.BASE_URL + 'src/assets/img/logo.png');
+import logoSrc from '@/assets/img/logo-transparent.svg';
 </script>
 
 <style scoped>

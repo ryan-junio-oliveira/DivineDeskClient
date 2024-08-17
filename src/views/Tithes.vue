@@ -3,8 +3,8 @@
         <div class="app-container">
             <Sidebar :is-collapsed="isCollapsed" />
             <div :class="['content', { 'content-collapsed': isCollapsed }]">
-                <NavBarMembers @member-registered="updateTableMembers" />
-                <TableMembers :refresh="refreshTrigger" />
+                <NavBarTithes @tithes-registered="updateTableTithes" />
+                <TableTithes :refresh="refreshTrigger" />
             </div>
         </div>
     </div>
@@ -13,8 +13,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Sidebar from '../components/dashboard/Sidebar.vue';
-import TableMembers from '../components/dashboard/members/TableMembers.vue';
-import NavBarMembers from '../components/dashboard/members/NavBarMembers.vue';
+import NavBarTithes from '../components/dashboard/Tithes/NavBarTithes.vue';
+import TableTithes from '../components/dashboard/Tithes/TableTithes.vue';
 
 const isCollapsed = ref(window.innerWidth <= 768);
 
@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
 
 const refreshTrigger = ref(false);
 
-const updateTableMembers = () => {
+const updateTableTithes = () => {
     refreshTrigger.value = !refreshTrigger.value;
 };
 </script>

@@ -18,16 +18,27 @@
             </div>
         </div>
     </div>
+
+    <Notification v-if="notification" :message="notification.message" :type="notification.type" />
 </template>
 
 <script>
-import axios from '../../apis/axios';
-import memberService from '../../services/memberService';
+import Notification from '../../../components/ui/Notification.vue';
+import memberService from '../../../services/memberService';
 
 export default {
+    name: 'RegisterTitheModal',
+    components: {
+        Notification
+    },
     props: {
         showDeleteModal: Boolean,
         item: Object
+    },
+    data() {
+        return {
+            notification: null
+        };
     },
     methods: {
         closeDeleteModal() {
@@ -38,9 +49,17 @@ export default {
                 const response = await memberService.deleteMember(this.item.id);
                 this.$emit('member-deleted');
                 this.closeDeleteModal();
+                this.showNotification('Membro deletado com sucesso', 'success');
             } catch (error) {
-                //todo: alert error
+                const errorMessage = error.response?.data?.message || 'An error occurred';
+                this.showNotification(errorMessage, 'error');
             }
+        },
+        showNotification(message, type = 'error', duration = 3000) {
+            this.notification = { message, type, duration };
+            setTimeout(() => {
+                this.notification = null;
+            }, duration);
         }
     }
 };

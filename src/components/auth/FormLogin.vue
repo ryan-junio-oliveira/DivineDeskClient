@@ -4,8 +4,6 @@
       <h2 class="text-center" id="titleForm">Login</h2>
 
       <Alert :message="errors.general" variant="danger" />
-      <Alert :message="errors.email" variant="danger" />
-      <Alert :message="errors.password" variant="danger" />
 
       <div class="form-group w-100 m-auto">
         <label for="email">Email</label>

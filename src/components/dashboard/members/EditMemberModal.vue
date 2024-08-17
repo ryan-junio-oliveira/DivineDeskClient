@@ -42,13 +42,18 @@
             </div>
         </div>
     </div>
+    <Notification v-if="notification" :message="notification.message" :type="notification.type" />
 </template>
 
 <script>
-import axios from '../../apis/axios';
-import memberService from '../../services/memberService';
+import Notification from '../../../components/ui/Notification.vue';
+import memberService from '../../../services/memberService';
 
 export default {
+    name: 'EditMemberModal',
+    components: {
+        Notification
+    },
     props: {
         showEditModal: Boolean,
         item: Object
@@ -62,7 +67,8 @@ export default {
                 tel: '',
                 address: '',
                 marital_status: ''
-            }
+            },
+            notification: null
         };
     },
     watch: {
@@ -84,8 +90,17 @@ export default {
                 const response = await memberService.editMember(this.form);
                 this.$emit('member-updated');
                 this.closeEditModal();
+                this.showNotification('Membro editado com successo', 'success');
             } catch (error) {
+                const errorMessage = error.response?.data?.message || 'An error occurred';
+                this.showNotification(errorMessage, 'error');
             }
+        },
+        showNotification(message, type = 'error', duration = 3000) {
+            this.notification = { message, type, duration };
+            setTimeout(() => {
+                this.notification = null;
+            }, duration);
         }
     }
 };

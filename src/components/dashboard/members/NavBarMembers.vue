@@ -28,7 +28,7 @@
 
 <script>
 import RegisterMemberModal from './RegisterMemberModal.vue';
-import memberService from '../../services/memberService';
+import memberService from '../../../services/memberService';
 
 export default {
     name: 'NavbarComponent',
